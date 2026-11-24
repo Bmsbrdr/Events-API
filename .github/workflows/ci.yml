@@ -27,8 +27,8 @@ jobs:
 
       - name: Check API health
         run: |
-          curl --fail --silent --show-error --retry 15 --retry-connrefused \
-            --retry-delay 2 --max-time 5 "$EVENTS_API_BASE_URL/api/health"
+          curl --fail --silent --show-error --retry 15 --retry-all-errors \
+            --retry-delay 2 --retry-max-time 30 --max-time 5 "$EVENTS_API_BASE_URL/api/health"
 
       - name: Set up Python
         uses: actions/setup-python@v5
