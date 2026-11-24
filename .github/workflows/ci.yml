@@ -15,3 +15,14 @@ jobs:
       - name: check_checkout
         run: |
           ls -lisa
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t Events-API:latest .
+
+      - name: Run Docker Container
+        run: |
+          docker run -d -p 5000:5000 events-api Events-API:latest
