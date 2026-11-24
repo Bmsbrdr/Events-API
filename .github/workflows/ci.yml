@@ -21,8 +21,20 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t Events-API:latest .
+          docker build -t events-api:latest .
 
       - name: Run Docker Container
         run: |
           docker run -d -p 5000:5000 events-api Events-API:latest
+          sleep 5
+      - name: set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: install requirements
+        run: |
+          pip install -r requirements_test.txt
+      - name: run all tests
+        run: |
+          pytest -v
