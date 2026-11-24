@@ -11,3 +11,7 @@ jobs:
     steps:
       - name: Checkout my code
         uses: actions/checkout@v4
+
+      - name: check_checkout
+        run: |
+          ls -lisa
